@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 use regex::Regex;
 
-fn convert_to_int(my_string: String) -> i32 {
+fn convert_to_positive_int(my_string: String) -> i32 {
     let f = my_string.parse::<i32>();
     match f {
         Ok(f) => {
@@ -14,7 +14,7 @@ fn convert_to_int(my_string: String) -> i32 {
 }
 
 fn check_interval(my_string: String, lower: i32, upper: i32) -> bool {
-    let num = convert_to_int(my_string);
+    let num = convert_to_positive_int(my_string);
     if num == -1 { false } else { num >= lower && num <= upper }
 }
 
