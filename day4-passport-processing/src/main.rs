@@ -71,6 +71,7 @@ fn main() {
             for st in &fields {
                 if current_passport.matches(st.0).count() == 0 {
                     valid = false;
+                    break;
                 } else {
                     let expr = format!(r"{}:.* ", st.0);
                     let re = Regex::new(&expr).unwrap();
@@ -89,6 +90,7 @@ fn main() {
                     value = value.chars().rev().collect::<String>();
                     if !st.1(value) {
                         valid = false;
+                        break;
                     }
                 }
             }
