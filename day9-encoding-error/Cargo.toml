@@ -1,5 +1,5 @@
 [package]
-name = "hello-rust"
+name = "day9-encoding-error"
 version = "0.1.0"
 authors = ["rafaavc"]
 edition = "2018"
