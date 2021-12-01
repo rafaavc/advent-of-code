@@ -3,20 +3,26 @@ import utils.FileManager
 fun main() {
     val fileManager = FileManager(1)
     val lines = fileManager.readPuzzle1()
-    val numbers = lines.map { line -> line.toInt() }
+
+    val numbers = mutableListOf(0)
+    numbers.addAll(lines.map { line -> line.toInt() })
+
+    val firstNumbersIdx = 1 // because we added the 0 for accumulation
 
     fun solvePuzzle1() {
-        var count = 0
-        for (i in numbers.indices) {
-            if (i > 0 && numbers[i] > numbers[i - 1]) count++
+        val count = numbers.reduceIndexed { idx, acc, el ->
+            if (idx > firstNumbersIdx && el > numbers[idx - 1])
+                acc + 1
+            else acc
         }
         println(count)
     }
 
     fun solvePuzzle2() {
-        var count = 0
-        for (i in 3 until numbers.size) {
-            if (numbers[i] > numbers[i - 3]) count++
+        val count = numbers.reduceIndexed { idx, acc, el ->
+            if (idx > firstNumbersIdx + 2 && el > numbers[idx - 3])
+                acc + 1
+            else acc
         }
         println(count)
     }
