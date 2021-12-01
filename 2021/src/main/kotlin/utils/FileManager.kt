@@ -6,8 +6,10 @@ import java.io.InputStreamReader
 class FileManager(private val day: Int) {
     private fun read(puzzle: Int): List<String> {
         val dayIdentifier = if (day < 10) "0$day" else "$day"
+        val fileName = "Day$dayIdentifier-$puzzle.txt"
 
-        val resource = FileManager::class.java.getResourceAsStream("/Day$dayIdentifier-$puzzle.txt") ?: return listOf()
+        val resource = FileManager::class.java.getResourceAsStream("/$fileName")
+            ?: error("Couldn't find resource file '$fileName'")
 
         val reader = BufferedReader(InputStreamReader(resource))
         return reader.readLines()
