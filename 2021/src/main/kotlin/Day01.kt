@@ -14,18 +14,9 @@ fun main() {
     }
 
     fun solvePuzzle2() {
-        var currentWindow = 0
-        var lastWindow: Int
-
         var count = 0
-        for (i in numbers.indices) {
-            if (i < 3) {
-                currentWindow += numbers[i]
-                continue
-            }
-            lastWindow = currentWindow
-            currentWindow = lastWindow + numbers[i] - numbers[i - 3]
-            if (currentWindow > lastWindow) count++
+        for (i in 3 until numbers.size) {
+            if (numbers[i] > numbers[i - 3]) count++
         }
         println(count)
     }
