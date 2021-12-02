@@ -2,8 +2,7 @@ import utils.FileManager
 import utils.Logger
 
 fun main() {
-    val fileManager = FileManager(1)
-    val lines = fileManager.readPuzzle1()
+    val lines = FileManager.read(1)
     val numbers = lines.map { line -> line.toInt() }
 
     fun solvePuzzle1()

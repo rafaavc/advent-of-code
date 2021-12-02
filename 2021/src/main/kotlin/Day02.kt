@@ -2,8 +2,7 @@ import utils.FileManager
 import utils.Logger
 
 fun main() {
-    val fileManager = FileManager(2)
-    val lines = fileManager.readPuzzle1()
+    val lines = FileManager.read(2)
 
     fun solvePuzzle1(): Int {
         var depth = 0
