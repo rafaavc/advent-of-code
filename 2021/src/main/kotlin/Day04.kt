@@ -35,11 +35,7 @@ class Puzzle(board: Array<Array<Int>>) {
         return isOver
     }
 
-    fun getUnsetSum(): Int
-        = numbersIndexes.keys.fold(0) { acc, number ->
-            if (number >= 0) acc + number
-            else acc
-        }
+    fun getUnsetSum(): Int = numbersIndexes.keys.sum()
 }
 
 fun main() {

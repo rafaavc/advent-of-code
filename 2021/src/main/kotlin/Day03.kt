@@ -11,16 +11,18 @@ enum class CommonBitType {
 fun main() {
     val lines = FileManager.read(3)
 
-    fun get1CountAtI(lines: List<String>, i: Int): Int = lines.fold(0) { acc, line ->
-        if (line[i] == '1') acc + 1
-        else acc
-    }
+    fun get1CountAtI(lines: List<String>, i: Int): Int
+        = lines.fold(0) { acc, line ->
+            if (line[i] == '1') acc + 1
+            else acc
+        }
 
     fun getMostLeastCommonBitAtI(lines: List<String>, i: Int, type: CommonBitType): Char {
         val oneCount = get1CountAtI(lines, i)
+        val oneCountGreater = oneCount >= lines.size - oneCount
         return when (type) {
-            CommonBitType.MOST -> if (oneCount >= lines.size - oneCount) '1' else '0'
-            CommonBitType.LEAST -> if (oneCount >= lines.size - oneCount) '0' else '1'
+            CommonBitType.MOST -> if (oneCountGreater) '1' else '0'
+            CommonBitType.LEAST -> if (oneCountGreater) '0' else '1'
         }
     }
 
