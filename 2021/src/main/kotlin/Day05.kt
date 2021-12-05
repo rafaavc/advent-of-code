@@ -31,7 +31,7 @@ fun main() {
             if (onlyOrthogonal && !(xStep == 0 || yStep == 0)) continue
 
             while (true) {
-                coordinateMap[left] = coordinateMap[left]?.run { true } ?: false
+                coordinateMap[left] = coordinateMap[left] != null
 
                 if (left == right) break
                 left = Pair(left.first + xStep, left.second + yStep)
