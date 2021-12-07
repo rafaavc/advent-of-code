@@ -3,7 +3,7 @@ import utils.Logger
 
 fun main() {
     val lines = FileManager.read(6)
-    val numbers: MutableList<Int> = lines[0].split(",").map { n -> n.toInt() }.toMutableList()
+    val numbers = lines[0].split(",").map { n -> n.toInt() }
 
     fun solve(days: Int): Long {
         var memo = Array(9) { 0L }
