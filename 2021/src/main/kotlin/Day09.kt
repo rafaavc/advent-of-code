@@ -52,19 +52,18 @@ fun main() {
 
     fun solvePuzzle2(): Int {
         val lowPoints = getLowPoints()
-        val amounts = mutableMapOf<Int, Int>()
+        val amounts = mutableListOf<Int>()
 
         for (point in lowPoints) {
             val value = dfs(point, mutableSetOf())
-            amounts[value] = amounts[value]?.plus(1) ?: 1
+            amounts.add(value)
         }
 
         var result = 1
         for (_i in 0..2) {
-            val max = amounts.keys.maxOrNull()!!
+            val max = amounts.maxOrNull()!!
             result *= max
-            if (amounts[max]!! > 1) amounts[max] = amounts[max]!! - 1
-            else amounts.remove(max)
+            amounts.remove(max)
         }
 
         return result
