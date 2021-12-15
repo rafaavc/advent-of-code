@@ -74,12 +74,10 @@ fun main() {
         board = Array(board.size * 5) { i ->
             val line = board[i % board.size]
 
-            Array(line.size) { j ->
-                if (i == 0) line[j]
-                else {
-                    val value = line[j] + (i / board.size)
-                    if (value >= 10) value - 9 else value
-                }
+            if (i == 0) line
+            else Array(line.size) { j ->
+                val value = line[j] + (i / board.size)
+                if (value >= 10) value - 9 else value
             }
         }
 
