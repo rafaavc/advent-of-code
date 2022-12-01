@@ -13,6 +13,8 @@ fun main() {
         val encoding = split[0]
         correspondence[encoding] = map
 
+        Integer.highestOneBit(1)
+
         val left = encoding[0] + split[1]
         val right = split[1] + encoding[1]
 
