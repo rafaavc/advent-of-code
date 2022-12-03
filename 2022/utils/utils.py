@@ -14,7 +14,7 @@ def read_data(day: int, part: int):
 Solver = NewType("Solver", Callable[[List[AnyStr]], int])
 
 
-def solve_problems(day: int, solution1: Solver, solution2: Solver):
+def solve_problems(day: int, solution1: Solver, solution2: Solver = None):
     problem1_solution = -1
     if solution1 is not None:
         print("Solving problem1...")
