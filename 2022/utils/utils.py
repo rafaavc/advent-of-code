@@ -5,7 +5,7 @@ from os.path import exists
 def read_data(day: int, part: int):
     file = f"./data/day{day}"
     if not exists(file):
-        file = file + f"-{part}"
+        file += f"-{part}"
 
     with open(file, "r") as f:
         return [line.rstrip("\n") for line in f.readlines()]
