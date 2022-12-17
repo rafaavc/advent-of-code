@@ -88,11 +88,10 @@ def expand_map(cave_map: List[List[str]], min_x, max_x, x):
 def solution2(data):
     cave_map, min_x, max_x, max_y = parse_map2(data)
     count = 0
-    found = False
-    while not found:
+    while True:
         current = np.array((500, 1))
         delta = np.array((0, 1))
-        while not found:
+        while True:
             while cave_map[current[1]][current[0] - min_x] == ".":
                 current += delta
 
@@ -110,12 +109,11 @@ def solution2(data):
                 current = next_r
             else:
                 current -= delta
-                if current[1] == 0 and current[0] == 500:
-                    found = True
-                cave_map[current[1]][current[0] - min_x] = "o"
                 count += 1
+                if current[1] == 0 and current[0] == 500:
+                    return count
+                cave_map[current[1]][current[0] - min_x] = "o"
                 break
-    return count
 
 
 solve_problems(14, solution1, solution2)
