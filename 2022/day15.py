@@ -22,9 +22,8 @@ def get_no_beacon_positions(parsed_data: List[Union[np.array, int]], row: int):
         distance = manhattan(sensor, beacon)
 
         d2 = distance - abs(row - sensor[1])
-        if d2 < 0:
-            continue
-        segments.append([sensor[0] - d2, sensor[0] + d2])
+        if d2 >= 0:
+            segments.append([sensor[0] - d2, sensor[0] + d2])
 
     segments = merge_segments(segments)
     return sum([segment[1] - segment[0] for segment in segments])

@@ -1,5 +1,5 @@
 from utils import solve_problems
-from queue import PriorityQueue
+from utils import dijkstra
 import numpy as np
 
 
@@ -30,38 +30,32 @@ deltas = [
     np.array((0, -1)),
 ]
 
+def dijkstra_day12(*data):
+    def expand(grid, current, current_steps, pq, seen):
+        j, i = current
+        for delta in deltas:
+            new_current = current + delta
+            new_j, new_i = new_current
 
-def expand(grid, current, current_steps, pq, seen):
-    j, i = current
-    for delta in deltas:
-        new_current = current + delta
-        new_j, new_i = new_current
+            if new_j < 0 or new_j >= len(grid) or new_i < 0 or new_i >= len(grid[0]) \
+                    or grid[new_j][new_i] > grid[j][i] + 1 or grid[new_j][new_i] == -1:
+                continue
 
-        if new_j < 0 or new_j >= len(grid) or new_i < 0 or new_i >= len(grid[0]) \
-                or grid[new_j][new_i] > grid[j][i] + 1 or grid[new_j][new_i] == -1:
-            continue
-
-        new_current = tuple(new_current)
-        if new_current not in seen:
-            pq.put((current_steps + 1, new_current))
-            seen.add(new_current)
+            new_current = tuple(new_current)
+            if new_current not in seen:
+                pq.put((current_steps + 1, new_current))
+                seen.add(new_current)
 
 
-def dijkstra(grid, start, end):
-    pq = PriorityQueue()
-    pq.put((0, start))
-    seen = {start}
-    while not pq.empty():
-        steps, node = pq.get()
+    def check_end(node, end):
         node = np.array(node)
-        if np.sum(node == end) == 2:
-            return steps
-        expand(grid, node, steps, pq, seen)
-    return -1
+        return np.sum(node == end) == 2
+    grid, start, end = data
+    return dijkstra(grid, expand, check_end, start, end)
 
 
 def solution1(data):
-    return dijkstra(*parse_data(data))
+    return dijkstra_day12(*parse_data(data))
 
 
 def solution2(data):
@@ -71,7 +65,7 @@ def solution2(data):
     for j, line in enumerate(grid):
         for i, height in enumerate(line):
             if height == 0:
-                if (v := dijkstra(grid, (j, i), end)) > 0:
+                if (v := dijkstra_day12(grid, (j, i), end)) > 0:
                     result = min(result, v)
 
     return result

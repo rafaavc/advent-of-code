@@ -35,27 +35,27 @@ def add_segment_by_merging(segments, new_segment):
     return merge_without_sort(segments)
 
 
-def nparray_equals(a1, a2):
+def ndarray_equals(a1, a2):
     return (np.array(a1) == np.array(a2)).all()
 
 
 def test_merge_segments():
-    assert nparray_equals(merge_segments([[1, 2], [2, 3]]), [[1, 3]])
-    assert nparray_equals(merge_segments([[1, 2], [3, 4]]), [[1, 4]])
-    assert nparray_equals(merge_segments([[1, 4], [3, 3]]), [[1, 4]])
-    assert nparray_equals(merge_segments([[1, 4], [6, 7]]), [[1, 4], [6, 7]])
-    assert nparray_equals(merge_segments([[1, 4], [4, 5], [10, 15]]), [[1, 5], [10, 15]])
-    assert nparray_equals(merge_segments([[-5, 5], [1, 4], [4, 5], [10, 15]]), [[-5, 5], [10, 15]])
+    assert ndarray_equals(merge_segments([[1, 2], [2, 3]]), [[1, 3]])
+    assert ndarray_equals(merge_segments([[1, 2], [3, 4]]), [[1, 4]])
+    assert ndarray_equals(merge_segments([[1, 4], [3, 3]]), [[1, 4]])
+    assert ndarray_equals(merge_segments([[1, 4], [6, 7]]), [[1, 4], [6, 7]])
+    assert ndarray_equals(merge_segments([[1, 4], [4, 5], [10, 15]]), [[1, 5], [10, 15]])
+    assert ndarray_equals(merge_segments([[-5, 5], [1, 4], [4, 5], [10, 15]]), [[-5, 5], [10, 15]])
 
 
 def test_add_segment_by_merging():
-    assert nparray_equals(add_segment_by_merging([[1, 4], [6, 7]], [5, 5]), [[1, 7]])
-    assert nparray_equals(add_segment_by_merging([[1, 4], [6, 7]], [8, 9]), [[1, 4], [6, 9]])
-    assert nparray_equals(add_segment_by_merging([[3, 4], [6, 7]], [1, 2]), [[1, 4], [6, 7]])
-    assert nparray_equals(add_segment_by_merging([[3, 4], [10, 15]], [6, 8]), [[3, 4], [6, 8], [10, 15]])
-    assert nparray_equals(add_segment_by_merging([[3, 4], [10, 15]], [-6, -1]), [[-6, -1], [3, 4], [10, 15]])
-    assert nparray_equals(add_segment_by_merging([[3, 4], [10, 15]], [-6, 3]), [[-6, 4], [10, 15]])
-    assert nparray_equals(add_segment_by_merging([[3, 4], [10, 15], [17, 199]], [-6, 500]), [[-6, 500]])
+    assert ndarray_equals(add_segment_by_merging([[1, 4], [6, 7]], [5, 5]), [[1, 7]])
+    assert ndarray_equals(add_segment_by_merging([[1, 4], [6, 7]], [8, 9]), [[1, 4], [6, 9]])
+    assert ndarray_equals(add_segment_by_merging([[3, 4], [6, 7]], [1, 2]), [[1, 4], [6, 7]])
+    assert ndarray_equals(add_segment_by_merging([[3, 4], [10, 15]], [6, 8]), [[3, 4], [6, 8], [10, 15]])
+    assert ndarray_equals(add_segment_by_merging([[3, 4], [10, 15]], [-6, -1]), [[-6, -1], [3, 4], [10, 15]])
+    assert ndarray_equals(add_segment_by_merging([[3, 4], [10, 15]], [-6, 3]), [[-6, 4], [10, 15]])
+    assert ndarray_equals(add_segment_by_merging([[3, 4], [10, 15], [17, 199]], [-6, 500]), [[-6, 500]])
 
 
 test_merge_segments()
