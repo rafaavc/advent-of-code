@@ -1,13 +1,12 @@
 import java.io.FileInputStream
 import scala.io.Source
 
-private type Solver = Iterator[String] => String
+private type Solver[T] = Iterator[String] => T
 
-def day(day: Int)(problem: Int)(solve: Solver): Unit = {
+def day[T](day: Int)(file: Int, part: Int)(solve: Solver[T]): Unit = {
   val fileName = "%02d-".format(day)
 
-  val input = Source.fromInputStream(new FileInputStream("./inputs/%02d/%s".format(day, problem)))
+  val input = Source.fromInputStream(new FileInputStream("./inputs/%02d/%s".format(day, file)))
   val result = solve(input.getLines())
-  println(s"Problem $problem result = $result")
+  println(s"Day $day part $part result = $result")
 }
-
