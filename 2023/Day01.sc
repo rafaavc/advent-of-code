@@ -4,7 +4,7 @@ import util.fs
 
 val problem = fs.day[Int](1) _
 
-problem(1, 1) {
+problem(1) {
   _
     .map { (line: String) =>
       val first = line.find(_.isDigit).get.asDigit
@@ -46,7 +46,7 @@ def getValue(
   }
 }
 
-problem(1, 2) {
+problem(2) {
   _
     .map { (line: String) =>
       val left = getValue(line, _.indexOf(_), _.find(_), _.min, _ < _)

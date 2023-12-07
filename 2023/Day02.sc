@@ -11,7 +11,7 @@ case class Colors(red: Int = 0, green: Int = 0, blue: Int = 0) {
     case _ => this
   }
 
-  val pow: Int = red * green * blue
+  lazy val pow: Int = red * green * blue
 
   def <=(other: Colors): Boolean = red <= other.red && green <= other.green && blue <= other.blue
 }
@@ -31,7 +31,7 @@ def parseGames(lines: Iterator[String]) = lines.foldLeft(mutable.Map[Int, Colors
   }
 }
 
-problem(1, 1) { lines =>
+problem(1) { lines =>
   val max = Colors(12, 13, 14)
   parseGames(lines)
     .map { case (id, colors) =>
@@ -40,7 +40,7 @@ problem(1, 1) { lines =>
     .sum
 }
 
-problem(1, 2) { lines =>
+problem(2) { lines =>
   parseGames(lines)
     .map { case (_, colors) => colors.pow }
     .sum
